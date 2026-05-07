@@ -16,33 +16,22 @@ Visualization : For crafting an intuitive, interactive dashboard that facilitate
 ## The Deep-Dive Approach
 1. Data Engineering with Power Query
 Before visualization, a robust data foundation was built through several transformation steps:
-
 Data Cleansing: Implemented conditional filters to exclude non-commercial transactions (quantities < 0 and unit prices <= 0), ensuring the revenue figures were not skewed by returns or internal adjustments.
-
 Data Type Standardisation: Applied strict typing to InvoiceDate, Quantity, and UnitPrice to ensure calculation accuracy in the DAX engine.
-
 Dimensionality: Extracted time-based attributes (Year, Month, Hour, Day of Week) from the InvoiceDate column to allow for granular seasonality and hourly traffic analysis.
-
 Profiling: Used "Column Quality" and "Column Distribution" tools to identify and handle null values in the CustomerID field, ensuring accurate segmentation without losing overall revenue totals.
 
 2. Analytical Logic with DAX
 I developed custom DAX measures to move beyond basic counts and sums, providing deeper business context:
-
 Total Revenue: Created a robust measure using SUMX(Sales, [Quantity] * [UnitPrice]) to ensure per-line accuracy.
-
 Time Intelligence: Utilized SAMEPERIODLASTYEAR and TOTALYTD functions to compare growth patterns and identify the Q4 revenue surge.
-
 Customer Loyalty Metrics: Developed a "Customer Count" measure using DISTINCTCOUNT(Sales[CustomerID]) and compared it against total orders to calculate the 98.9% Retention Rate.
-
 AOV (Average Order Value): Leveraged a ratio measure [Total Revenue] / [Total Orders] to identify high-value regions like the Netherlands vs. high-volume regions like the UK.
 
 3. Strategic Visualisation & Insight Generation
 The dashboard was designed using "User-Centric Design" principles, categorized for specific leaders:
-
 The CEO View: Focused on global revenue distribution. Used Map Visuals and Ranked Bar Charts to highlight that while the UK is the core market, the European segment (Germany, EIRE, France) presents the highest scalability with lower operational overhead.
-
 The CMO View: Focused on consumer behavior. Developed an Hourly Sales Line Chart to pinpoint the 10 AM – 3 PM "Golden Window" and a Top 10 Product Matrix to suggest cross-selling opportunities for best-sellers like "Jumbo Bags" and "Gliders."
-
 Expansion Modeling: Used Slicers for Region and Time to allow the leadership team to "stress-test" different expansion scenarios by viewing performance in specific months across different international territories.
 
 ## Key Project Outcome
